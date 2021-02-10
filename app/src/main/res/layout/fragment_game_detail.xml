@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.example.appcent.ui.view.GameDetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/favIcon"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16sp"
+            android:background="@android:color/transparent"
+            android:padding="4dp"
+            android:src="@drawable/ic_favorite"
+            app:layout_constraintBottom_toBottomOf="@id/image"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16sp"
+            android:layout_marginEnd="16sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            tools:text="Name of Game" />
+
+        <TextView
+            android:id="@+id/releasd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16sp"
+            android:alpha="0.4"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            tools:text="14/05/2020" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16sp"
+            android:alpha="0.4"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/releasd"
+            tools:text="5/10" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.7"
+            android:paddingStart="16sp"
+            android:paddingEnd="16sp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/score"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ipsum dolor sit amet consectetur adipiscing elit. Pharetra et ultrices neque ornare. Arcu bibendum at varius vel pharetra. Sociis natoque penatibus et magnis dis. Arcu bibendum at varius vel pharetra vel turpis. Dictum fusce ut placerat orci. Malesuada proin libero nunc consequat interdum varius. Rhoncus urna neque viverra justo nec ultrices dui sapien. Posuere morbi leo urna molestie at. Dolor sit amet consectetur adipiscing elit duis tristique sollicitudin. Scelerisque eleifend donec pretium vulputate sapien nec. Bibendum est ultricies integer quis. Viverra orci sagittis eu volutpat odio facilisis mauris sit.Vestibulum mattis ullamcorper velit sed ullamcorper. Faucibus vitae aliquet nec ullamcorper sit amet risus nullam eget. Aliquam malesuada bibendum arcu vitae. Nunc sed augue lacus viverra vitae. Nam libero justo laoreet sit amet cursus sit amet dictum. In hendrerit gravida rutrum quisque non. Neque ornare aenean euismod elementum nisi quis. Varius sit amet mattis vulputate enim nulla aliquet. Donec massa sapien faucibus et. Magna fringilla urna porttitor rhoncus dolor purus non. Turpis nunc eget lorem dolor sed. Adipiscing bibendum est ultricies integer quis auctor elit sed. Arcu cursus vitae congue mauris rhoncus aenean vel.Volutpat diam ut venenatis tellus in metus vulputate eu scelerisque. Consequat mauris nunc congue nisi vitae suscipit tellus mauris. Posuere urna nec tincidunt praesent. Et magnis dis parturient montes nascetur ridiculus. Praesent semper feugiat nibh sed pulvinar proin gravida hendrerit. Luctus accumsan tortor posuere ac ut consequat semper. Donec ultrices tincidunt arcu non. Eget mi proin sed libero enim sed faucibus. At volutpat diam ut venenatis tellus in metus vulputate eu. Egestas sed tempus urna et pharetra pharetra massa massa ultricies. Rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Cras sed felis eget velit aliquet sagittis id consectetur. Habitant morbi tristique senectus et netus et malesuada fames ac. Magna sit amet purus gravida quis blandit turpis. Felis donec et odio pellentesque. Velit euismod in pellentesque massa placerat. Lacus vestibulum sed arcu non odio euismod lacinia. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Risus nullam eget felis eget nunc.Dictum non consectetur a erat nam at lectus. At tempor commodo ullamcorper a lacus vestibulum. Lacus sed turpis tincidunt id aliquet. Tempus egestas sed sed risus. Cras ornare arcu dui vivamus arcu felis bibendum ut tristique. Cursus eget nunc scelerisque viverra mauris in aliquam sem. Sit amet porttitor eget dolor. Bibendum neque egestas congue quisque egestas diam in. Sit amet cursus sit amet dictum sit amet justo. Egestas pretium aenean pharetra magna ac placerat vestibulum lectus. Dolor purus non enim praesent elementum facilisis. Diam vel quam elementum pulvinar Velit egestas dui id ornare. Risus quis varius quam quisque id diam vel. Nec nam aliquam sem et tortor consequat id porta. Vitae sapien pellentesque habitant morbi tristique senectus et netus et. Nam libero justo laoreet sit amet cursus sit amet dictum. Tempor commodo ullamcorper a lacus vestibulum sed arcu non odio. Semper quis lectus nulla at volutpat diam ut venenatis. Volutpat ac tincidunt vitae semper quis lectus nulla. Sit amet nisl suscipit adipiscing bibendum. Viverra vitae congue eu consequat ac felis donec et. Nullam eget felis eget nunc lobortis mattis. Amet volutpat consequat mauris nunc. Volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque. Amet justo donec enim diam vulputate ut pharetra sit amet. Nec nam aliquam sem et." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
