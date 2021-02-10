@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         initFcm()
     }
 
-    fun initFcm() {
+    private fun initFcm() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 return@OnCompleteListener

@@ -69,7 +69,7 @@ class GameDetailFragment : Fragment() {
         favIcon.setOnClickListener {
             viewModel.gameDetail.value?.let {
                 if (!it.isFav) {
-                    viewModel.addToFavorites(it.id)
+                    viewModel.addToFavorites(it)
                     setFavIconTint(true)
                 } else {
                     viewModel.removeFromFavorites(it.id)

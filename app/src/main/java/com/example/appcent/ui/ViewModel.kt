@@ -2,7 +2,6 @@ package com.example.appcent.ui
 
 import android.app.Application
 import android.content.Context
-import androidx.core.content.edit
 import androidx.lifecycle.*
 import com.example.appcent.R
 import com.example.appcent.data.Repository
@@ -21,6 +20,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     val allGames = mutableListOf<Game>()
     private val compositeDisposable = CompositeDisposable()
     var isLastPage = true
+
 
     private var sharedPref = application
         .getSharedPreferences(
@@ -64,46 +64,32 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getFavGames() {
-        val locallyStoredIds = getFavoriteList()
-        val favsToAdd = mutableListOf<Game>()
-        if (!locallyStoredIds.isNullOrEmpty()) {
-            games.value?.let {
-                it.forEach { item ->
-                    if (locallyStoredIds.contains(item.id))
-                        favsToAdd.add(item)
-                }
-            }
-        }
-        favGames.postValue(favsToAdd)
+        favGames.postValue(repository.getGamesFromStrings(getFavoriteStrings()))
     }
 
     fun resetData() {
         favGames.value = null
+        games.value = null
+        allGames.clear()
     }
 
-    private fun getFavoriteList(): List<Int> {
-        return if (sharedPref.all.values.toList().firstOrNull() is Int)
-            (sharedPref.all.values.toList() as List<Int>)
+    private fun getFavoriteStrings(): List<String> {
+        return if (sharedPref.all.values.toList().firstOrNull() is String)
+            (sharedPref.all.values.toList() as List<String>)
         else
             listOf()
     }
 
-    fun addToFavorites(id: Int) {
-        sharedPref.edit {
-            putInt(id.toString(), id)
-            apply()
-        }
+    fun addToFavorites(game: Game) {
+        repository.addToFavorites(game, sharedPref)
     }
 
     fun removeFromFavorites(id: Int) {
-        sharedPref.edit {
-            remove(id.toString())
-            apply()
-        }
+        repository.removeFromFavorites(id, sharedPref)
     }
 
     private fun checkIfFavorite(id: Int): Boolean {
-        return sharedPref.getInt(id.toString(), -1) != -1
+        return sharedPref.getString(id.toString(), null) != null
     }
 
 

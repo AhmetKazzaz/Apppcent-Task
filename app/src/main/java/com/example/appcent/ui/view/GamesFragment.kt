@@ -1,9 +1,11 @@
 package com.example.appcent.ui.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -57,6 +59,16 @@ class GamesFragment : Fragment(), PaginatedView, GamesAdapter.OnItemClickListene
         filterGames()
         getGames(page)
         observeData()
+        handleTouchEventsForSearchBar()
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun handleTouchEventsForSearchBar() {
+        containerLayout.setOnTouchListener { p0, p1 ->
+            etSearch.clearFocus()
+            true
+        }
+        etSearch.setOnFocusChangeListener { _, hasFocus -> setViewPagerVisibility(if (hasFocus) View.GONE else View.VISIBLE) }
     }
 
     private fun getGames(page: Int) {
@@ -73,17 +85,16 @@ class GamesFragment : Fragment(), PaginatedView, GamesAdapter.OnItemClickListene
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 s?.let {
                     if (it.length > 2) {
-                        setViewPagerVisibility(View.GONE)
                         Util.searchEvent(Firebase.analytics, it.toString())
                         viewModel.filterGames(it.toString())
                     }
                 }
                 if (s.isNullOrEmpty()) {
-                    setViewPagerVisibility(View.VISIBLE)
                     viewModel.filterGames("")
                 }
             }
         })
+
     }
 
     private fun setViewPagerVisibility(visibility: Int) {
@@ -94,16 +105,18 @@ class GamesFragment : Fragment(), PaginatedView, GamesAdapter.OnItemClickListene
     private fun observeData() {
         viewModel.games.observe(viewLifecycleOwner, {
             paginationHelper.setPaginate(true)
-            if (isFirstInit) {
-                viewPagerMain.adapter = MySliderAdapter(it.take(3))
-                TabLayoutMediator(tabLayout, viewPagerMain) { tab, position -> }.attach()
-            }
+            it?.let {
+                if (isFirstInit) {
+                    viewPagerMain.adapter = MySliderAdapter(it.take(3))
+                    TabLayoutMediator(tabLayout, viewPagerMain) { tab, position -> }.attach()
+                }
 
-            loading = false
-            adapter.removeLoadingFooter()
-            adapter.addAll(if (isFirstInit) it.drop(3) else it)
-            viewModel.allGames.addAll(it)
-            isFirstInit = false
+                loading = false
+                adapter.removeLoadingFooter()
+                adapter.addAll(if (isFirstInit) it.drop(3) else it)
+                viewModel.allGames.addAll(it)
+                isFirstInit = false
+            }
         })
 
         viewModel.filteredGames.observe(viewLifecycleOwner, {
@@ -126,6 +139,16 @@ class GamesFragment : Fragment(), PaginatedView, GamesAdapter.OnItemClickListene
         })
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.resetData()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.resetData()
+    }
+
     private fun initRv() {
         linearLayoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         rvGames.layoutManager = linearLayoutManager
@@ -133,7 +156,7 @@ class GamesFragment : Fragment(), PaginatedView, GamesAdapter.OnItemClickListene
     }
 
     override fun passOtherViewToAnimate(): View? {
-        return etSearch
+        return null
     }
 
     override fun loadMoreItems() {
