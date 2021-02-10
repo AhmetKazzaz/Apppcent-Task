@@ -35,7 +35,8 @@ This is the detail section of the game you click on. you can see description and
 
 ### IMPORTANT NOTE:
 I was intending to fully use room for local favorite games operations. I also used the pagination jetpack library at the beginning, however I didnt have the time to fully design the architecture based on those components, So I went on and wrote my own logic for pagination and ended up using sharedprefs for a faster solution even though I do not prefer using it at all. 
-I also wanted to integrate Android Hilt for dependency injection. but due to my very busy state at my current work I truly didnt have the time to focus on this task completely. 
+I also wanted to integrate Android Hilt for dependency injection. but due to my very busy state at my current work I truly didnt have the time to focus on this task completely.
+I only had 4-5 hours to work on this. and this is what i could come up with during these short hours
 You can see in my code there are data sources and room classes that are not being used at all. 
 for that reason I'd apprecaite it if you take this into consideration while checking out my code. 
 
